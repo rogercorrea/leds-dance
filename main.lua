@@ -1,5 +1,4 @@
 
-dofile("config_wifi.lua")
 pin_led_white = 4
 pin_led_red = 1
 pin_led_blue = 2

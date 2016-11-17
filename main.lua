@@ -1,57 +1,27 @@
-
 dofile("config_wifi.lua")
-pin_led_white = 4
-pin_led_red = 1
-pin_led_blue = 2
 
-state_led_white = 0
-state_led_red = 0
-state_led_blue = 0
+function start_leds()
 
-gpio.mode(pin_led_white, gpio.OUTPUT)
-gpio.mode(pin_led_red, gpio.OUTPUT)
-gpio.mode(pin_led_blue, gpio.OUTPUT)
+    pins = {4, 1, 2}
+    state = {0, 0, 0}
 
-gpio.write(pin_led_white, gpio.LOW)
-gpio.write(pin_led_red, gpio.LOW)
-gpio.write(pin_led_blue, gpio.LOW)
+    for i, pin in pairs(pins) do
+        gpio.mode(pin, gpio.OUTPUT)
+        gpio.write(pin, gpio.LOW)
 
-mils = math.random(500, 1000)
+        mils = math.random(500, 1000)
 
-tmr.register(1, mils, 1, function() 
-    if (state_led_white == 0) then
-        gpio.write(pin_led_white, gpio.HIGH)
-        state_led_white = 1
-    else
-        gpio.write(pin_led_white, gpio.LOW)
-        state_led_white = 0
+        tmr.register(i, mils, 1, function() 
+            if (state[i] == 0) then
+                gpio.write(pin, gpio.HIGH)
+                state[i] = 1
+            else
+                gpio.write(pin, gpio.LOW)
+                state[i] = 0
+            end
+        end)
+        tmr.start(i)        
     end
-end)
+end
 
-mils = math.random(500, 1000)
-
-tmr.register(2, mils, 1, function() 
-    if (state_led_blue == 0) then
-        gpio.write(pin_led_blue, gpio.HIGH)
-        state_led_blue = 1
-    else
-        gpio.write(pin_led_blue, gpio.LOW)
-        state_led_blue = 0
-    end
-end)
-
-mils = math.random(500, 1000)
-
-tmr.register(3, mils, 1, function() 
-    if (state_led_red == 0) then
-        gpio.write(pin_led_red, gpio.HIGH)
-        state_led_red = 1
-    else
-        gpio.write(pin_led_red, gpio.LOW)
-        state_led_red = 0
-    end
-end)
-
-tmr.start(1)
-tmr.start(2)
-tmr.start(3)
+start_leds()

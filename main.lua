@@ -1,4 +1,15 @@
+<<<<<<< HEAD
 dofile("config_wifi.lua")
+=======
+
+pin_led_white = 4
+pin_led_red = 1
+pin_led_blue = 2
+
+state_led_white = 0
+state_led_red = 0
+state_led_blue = 0
+>>>>>>> 5e5b22cead16bc30e7669e13aed1305c61bf07f6
 
 function start_leds()
 
@@ -24,4 +35,10 @@ function start_leds()
     end
 end
 
+<<<<<<< HEAD
 start_leds()
+=======
+tmr.start(1)
+tmr.start(2)
+tmr.start(3)
+>>>>>>> 5e5b22cead16bc30e7669e13aed1305c61bf07f6

@@ -1,5 +1,5 @@
 # leds-dance
-Script to control leds in christima light mode using NodeMCU and Lua
+Script to control leds in christima light mode or party-night mode using NodeMCU and Lua
 
 Materials:
 NodeMCU and Lua firmware

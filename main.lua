@@ -1,4 +1,4 @@
-dofile("config_wifi.lua")
+--dofile("config_wifi.lua")
 
 function start_leds()
 
